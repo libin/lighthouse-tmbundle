@@ -44,20 +44,22 @@ ENV['TM_BUNDLE_SUPPORT'] = '#{ENV['TM_BUNDLE_SUPPORT']}';
 var STATE_HASH = #{States.to_json};
 JAVASCRIPT
 
-html_header("Lighthouse", "Lighthouse", %Q{<script type="text/javascript" language="javascript" charset="utf-8">#{header_js}\n\n#{core_js}</script>})
+html_header("Lighthouse", "Lighthouse", %Q{<script type="text/javascript" language="javascript" charset="utf-8">#{header_js}\n\n#{core_js}</script><link rel="stylesheet" href="file://#{ENV['TM_BUNDLE_SUPPORT']}/Core.css" type="text/css" charset="utf-8" media="screen">})
 
 if project.tickets.length > 0
-  puts '<table class="status" border="0">'
+  puts '<table class="lighthouse" border="0">'
+  puts '<tr><th>№</th><th>Name</th><th class="state">State</th><th>Creator</th><th>Assigned</th></tr>'
+
   project.tickets.each do |ticket|
     States.select ticket
     style = States.style_color
 
     puts "<tr>"
-    puts "<td id='number_#{ticket.id}'#{style}>#{ticket.number}</td>"
+    puts "<td id='number_#{ticket.id}'#{style}>\##{ticket.number}</td>"
     puts "<td><a id='link_#{ticket.id}' href='#{LH_URL}#{ticket.number}-' onclick='openInBrowser(this); return false;'#{style}>#{ticket.title}</a></td>"
-    puts "<td>#{States}</td>"
-    puts "<td>#{Users.get(ticket.creator_id)}</td>"
-    puts "<td>#{Users.get(ticket.assigned_user_id)}</td>"
+    puts "<td class='state'>#{States}</td>"
+    puts "<td class='creator'>#{Users.get(ticket.creator_id)}</td>"
+    puts "<td class='assigned'>#{Users.get(ticket.assigned_user_id)}</td>"
     puts "</tr>"
   end
   puts "</table>"

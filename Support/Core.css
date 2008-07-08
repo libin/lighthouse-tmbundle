@@ -1,0 +1,16 @@
+table.lighthouse {
+  width: 100%;
+}
+
+table.lighthouse th {
+  border-bottom: 1px solid;
+  text-align: left;
+}
+
+table.lighthouse td {
+  padding: 2px;
+}
+
+table.lighthouse td.creator, table.lighthouse td.assigned {
+  font-size: 0.9em;
+}
