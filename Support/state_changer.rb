@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby -s
 
 require "#{ENV['TM_BUNDLE_SUPPORT']}/lib/lighthouse.rb"
-# require "/Users/alexey/Library/Application Support/TextMate/Bundles/Lighthouse.tmbundle/Support/lib/lighthouse.rb"
 
 new_state = $state || 'new'
 ticket_id = $id.to_i || 0
