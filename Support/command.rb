@@ -8,8 +8,8 @@ require "#{ENV['TM_BUNDLE_SUPPORT']}/lib/lighthouse_state.rb"
 if !ENV['TM_LH_ACCOUNT'] or !ENV['TM_LH_PROJECT'] or !ENV['TM_LH_TOKEN']
   puts html_head(:window_title => "Lighthouse", :page_title => "Lighthouse", :sub_title => "Error")
   puts <<-HTML
-<p><strong>Предупреждение</strong>: Для того чтобы соединение с Lighthouse работало Вам надо завести параметры TM_LH_ACCOUNT, TM_LH_PROJECT и TM_LH_TOKEN!</p>
-<p>Завести их можно в настройках, вкладка "Advanced"->"Shell Variables". TM_LH_ACCOUNT - аккаунт на LH (поддомен). TM_LH_PROJECT - индефикатор проекта (числовое значение). TM_LH_TOKEN - токен для соединения с LH.</p>
+<p><strong>Warning</strong>: for connection with Lighthouse you need this parameters TM_LH_ACCOUNT, TM_LH_PROJECT and TM_LH_TOKEN!</p>
+<p>You can make this in "Preferences"->"Advanced"->"Shell Variables". TM_LH_ACCOUNT - account. TM_LH_PROJECT - project. TM_LH_TOKEN - token.</p>
 HTML
   abort
 end
@@ -22,7 +22,7 @@ begin
 rescue
   puts html_head(:window_title => "Lighthouse", :page_title => "Lighthouse", :sub_title => "Error")
   puts <<-HTML
-<p><strong>Ошибка</strong>: Произошла ошибка соединения с Lighthouse либо был не найден проект выбранный Вами по индефикатору.</p>
+<p><strong>Error</strong>: failure connection with Lighthouse or project was not found.</p>
 HTML
   abort
 end
