@@ -15,7 +15,7 @@ Installation
 
 To install via Git:
 
-		cd ~/"Library/Application Support/TextMate/Bundles/"
+		cd "~/Library/Application Support/TextMate/Bundles/"
 		git clone git://github.com/meritt/lighthouse-tmbundle.git "Lighthouse.tmbundle"
 		osascript -e 'tell app "TextMate" to reload bundles'
 
