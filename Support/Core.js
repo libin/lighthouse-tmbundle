@@ -21,3 +21,23 @@ function changeStatus(select) {
 
   TextMate.isBusy = false;
 }
+
+function toggleBody(ticketId) {
+  body_element = document.getElementById('body_' + ticketId);
+  if (body_element.style.display == 'none')
+    body_element.style.display = '';
+  else
+    body_element.style.display = 'none';
+}
+
+function e_sh(s){
+	return s
+	.toString()
+	.replace(/\x27/g,"’")
+	.replace(/\"/g,'\\\"')
+	;
+}
+
+window.alert = function(s){
+	TextMate.system('"$DIALOG" -e -p \'{messageTitle="JavaScript";informativeText="'+e_sh(s)+'";}\'', null);
+};

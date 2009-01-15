@@ -55,11 +55,14 @@ if project.tickets.length > 0
     style = States.style_color
 
     puts "<tr>"
-    puts "<td id='number_#{ticket.id}'#{style}>\##{ticket.number}</td>"
-    puts "<td><a id='link_#{ticket.id}' href='#{LH_URL}#{ticket.number}-' onclick='openInBrowser(this); return false;'#{style}>#{ticket.title}</a></td>"
+    puts "<td id='number_#{ticket.id}'#{style}><a id='link_#{ticket.id}' href='#{LH_URL}#{ticket.number}-' onclick='openInBrowser(this); return false;'#{style}>\##{ticket.number}</a></td>"
+    puts "<td><a href='#' onclick='toggleBody(#{ticket.id})'>#{ticket.title}</a></td>"
     puts "<td class='state'>#{States}</td>"
     puts "<td class='creator'>#{Users.get(ticket.creator_id)}</td>"
     puts "<td class='assigned'>#{Users.get(ticket.assigned_user_id)}</td>"
+    puts "</tr>"
+    puts "<tr>"
+    puts "<td colspan=5><pre id='body_#{ticket.id}' style='display:none;'>#{Lighthouse::Ticket.find(ticket.number, :params => { :project_id => project.id }).versions[0].body}</pre></td>"
     puts "</tr>"
   end
   puts "</table>"
