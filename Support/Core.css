@@ -14,3 +14,8 @@ table.lighthouse td {
 table.lighthouse td.creator, table.lighthouse td.assigned {
   font-size: 0.9em;
 }
+
+.span_link {
+  cursor: pointer;
+  text-decoration: underline;
+}

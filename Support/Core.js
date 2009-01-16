@@ -22,6 +22,10 @@ function changeStatus(select) {
   TextMate.isBusy = false;
 }
 
+function changeProject(select) {
+  
+}
+
 function toggleBody(ticketId) {
   body_element = document.getElementById('body_' + ticketId);
   if (body_element.style.display == 'none')
