@@ -5,12 +5,12 @@ function openInBrowser(link) {
   return false;
 }
 
-function changeStatus(select) {
+function changeStatus(select, project) {
   TextMate.isBusy = true;
 
   var newState = select[select.selectedIndex].value, ticketId = select.id.replace('lh_ticket_', '');
 
-  var query = '"' + ENV['TM_BUNDLE_SUPPORT'] + '/state_changer.rb"' + ' -state=' + newState + ' -id=' + ticketId + ' -account=' + ENV['TM_LH_ACCOUNT'] + ' -token=' + ENV['TM_LH_TOKEN'] + ' -project=' + ENV['TM_LH_PROJECT'];
+  var query = '"' + ENV['TM_BUNDLE_SUPPORT'] + '/state_changer.rb"' + ' -state=' + newState + ' -id=' + ticketId + ' -account=' + ENV['TM_LH_ACCOUNT'] + ' -token=' + ENV['TM_LH_TOKEN'] + ' -project=' + project;
 
   results = TextMate.system(query, null);
 
@@ -23,7 +23,19 @@ function changeStatus(select) {
 }
 
 function changeProject(select) {
+  TextMate.isBusy = true;
   
+  var newProject = select[select.selectedIndex].value;
+  var query = '"' + ENV['TM_BUNDLE_SUPPORT'] + '/project_changer.rb"' + ' -project=' + newProject + ' -account=' + ENV['TM_LH_ACCOUNT'] + ' -token=' + ENV['TM_LH_TOKEN'];
+  
+  result = TextMate.system(query, null);
+  
+  output_string = result.outputString
+  if (output_string) {
+    document.getElementById('tickets').innerHTML = output_string;
+  }
+  
+  TextMate.isBusy = false;
 }
 
 function toggleBody(ticketId) {

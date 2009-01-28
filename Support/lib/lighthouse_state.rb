@@ -1,7 +1,8 @@
 class LighthouseState
-  def initialize open_states, closed_states
-    @open   = parse open_states
-    @closed = parse closed_states
+  def initialize project
+    @project = project
+    @open   = parse project.open_states
+    @closed = parse project.closed_states
 
     @selected = nil
     @ticketid = nil
@@ -29,7 +30,7 @@ class LighthouseState
     close = (@closed.collect { |state| draw_option state[:name] }).join('')
 
     select_id = "id='lh_ticket_#{@ticketid}' " if @ticketid > 0
-    "<select #{select_id}onchange='changeStatus(this);'><optgroup label='Open status'>#{open}</optgroup><optgroup label='Close status'>#{close}</optgroup></select>"
+    "<select #{select_id}onchange='changeStatus(this, #{@project.id});'><optgroup label='Open status'>#{open}</optgroup><optgroup label='Close status'>#{close}</optgroup></select>"
   end
 
   def to_json

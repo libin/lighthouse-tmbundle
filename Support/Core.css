@@ -19,3 +19,7 @@ table.lighthouse td.creator, table.lighthouse td.assigned {
   cursor: pointer;
   text-decoration: underline;
 }
+
+#projects {
+  text-align: right;
+}
