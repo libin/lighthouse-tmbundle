@@ -8,7 +8,7 @@ class LighthouseTicket
     Lighthouse.token   = ENV['TM_LH_TOKEN']
     
     @project = project
-    @tickets = project.tickets
+    @tickets = project.tickets :q => 'responsible:me state:open'
     @users_cache  = LighthouseCache.new
     @states = LighthouseState.new project
     @lh_url = "http://#{ENV['TM_LH_ACCOUNT']}.lighthouseapp.com/projects/#{project.id}/tickets/"

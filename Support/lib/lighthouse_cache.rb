@@ -8,6 +8,8 @@ class LighthouseCache
   end
 
   def get(user_id)
+    return '' if user_id.blank?
+    
     self.include?(user_id)
     return @users[user_id]
   end
